@@ -66,8 +66,13 @@
           <input type="text" class="form-control" name="intensive" placeholder="Intensive">
         </div>
         <div class="form-group">
-          <label for="intensive">Intensive</label>
-          <input type="text" class="form-control" name="intensive" placeholder="Intensive">
+          <label for="employee_id">Teacher</label>
+          <select class="form-control" name="employee_id">
+            <% @employees.each do |employee| %>
+              <option value="<%= employee.id %>"><%= employee.name %></option>
+            <% end %>
+            <option value="">None</option>
+          </select>
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
 

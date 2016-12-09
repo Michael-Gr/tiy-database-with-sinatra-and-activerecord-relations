@@ -52,6 +52,7 @@
         <thead>
           <th>Name</th>
           <th>Subject</th>
+          <th>Teacher</th>
           <th>Start Date</th>
           <th>End Date</th>
           <th>Intensive?</th>
@@ -62,6 +63,11 @@
           <tr>
             <td><%= course.name %></td>
             <td><%= course.subject %></td>
+            <% if course.employee %>
+              <td><%= course.employee.name %></td>
+            <% else %>
+              <td>None</td>
+            <% end %>
             <td><%= course.start_date %></td>
             <td><%= course.end_date %></td>
             <td><%= course.intensive %></td>

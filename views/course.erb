@@ -50,6 +50,11 @@
         <li class="list-group-item"><%= @course.start_date %></li>
         <li class="list-group-item"><%= @course.end_date %></li>
         <li class="list-group-item"><%= @course.intensive %></li>
+        <% if @course.employee %>
+          <li class="list-group-item"><%= @course.employee.name %></li>
+        <% else %>
+          <li class="list-group-item">None</li>
+        <% end %>
       </ul>
       <a href="/edit_course?id=<%= @course.id %>" class="btn btn-primary">Edit Course</a>
     </div>

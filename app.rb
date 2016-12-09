@@ -10,6 +10,8 @@ ActiveRecord::Base.establish_connection(
 )
 
 class Employee < ActiveRecord::Base
+  has_many :courses
+
   self.primary_key = :id
 
   def monthly_salary
@@ -19,6 +21,8 @@ end
 
 class Course < ActiveRecord::Base
   self.primary_key = :id
+
+  belongs_to :employee
 end
 
 # Sinatra code starts here
@@ -89,6 +93,8 @@ get '/courses' do
 end
 
 get "/new_course" do
+  @employees = Employee.all
+
   erb :new_course
 end
 
@@ -105,6 +111,7 @@ get '/show_course' do
 end
 
 get '/edit_course' do
+  @employees = Employee.all
   @course = Course.find(params["id"])
 
   erb :edit_course
@@ -119,6 +126,14 @@ end
 
 post "/create_course" do
   Course.create(params)
+
+  redirect to("/courses")
+end
+
+post '/update_course' do
+  course = Course.find(params["id"])
+
+  course.update_attributes(params)
 
   redirect to("/courses")
 end
