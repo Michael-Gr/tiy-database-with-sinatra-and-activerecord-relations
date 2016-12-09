@@ -44,19 +44,32 @@
       <div class="page-header">
         <h1>Course details</h1>
       </div>
-      <ul class="list-group">
-        <li class="list-group-item"><%= @course.name %></li>
-        <li class="list-group-item"><%= @course.subject %></li>
-        <li class="list-group-item"><%= @course.start_date %></li>
-        <li class="list-group-item"><%= @course.end_date %></li>
-        <li class="list-group-item"><%= @course.intensive %></li>
-        <% if @course.employee %>
-          <li class="list-group-item"><%= @course.employee.name %></li>
-        <% else %>
-          <li class="list-group-item">None</li>
-        <% end %>
-      </ul>
+      <table class="table table-bordered table-condensed table-hover">
+        <thead>
+          <th>Name</th>
+          <th>Subject</th>
+          <th>Teacher</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Intensive?</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @course.name %></td>
+            <td><%= @course.subject %></td>
+            <% if @course.employee %>
+              <td><%= @course.employee.name %></td>
+            <% else %>
+              <td>None</td>
+            <% end %>
+            <td><%= @course.start_date %></td>
+            <td><%= @course.end_date %></td>
+            <td><%= @course.intensive %></td>
+          </tr>
+        </tbody>
+      </table>
       <a href="/edit_course?id=<%= @course.id %>" class="btn btn-primary">Edit Course</a>
+      <a href="/delete_course?id=<%= @course.id %>" class="btn btn-danger pull-right">Delete Course</a>
     </div>
 
 
